@@ -2,7 +2,7 @@
 
 
 # Read in Raw DataSet
-this <- read.csv("C:\\Users\\hb13316\\AppData\\Local\\Temp\\RtmpSqcpUd\\data5dc6f6434e9", 
+this <- read.csv("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv", 
                  stringsAsFactors = FALSE,
                  header=FALSE)
 
