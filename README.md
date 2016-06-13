@@ -2,7 +2,7 @@
 
 ### Questions that we will be investigating calling upon the data set:
 
-1 Match the data based on the country shortcode. How many of the IDs match?
+1 Match the data based on the country shortcode. How many of the IDs match? \n
 2 Sort the data frame in ascending order by GDP rank (so United States is last). What is the
 13th country in the resulting data frame?
 3 What are the average GDP rankings for the "High income: OECD" and "High income:
