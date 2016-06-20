@@ -1,0 +1,105 @@
+
+#Author Kyle Killion
+
+
+# Read the Gross Domestic Product data for the 190 ranked countries in this data set
+
+dataGDP <- read.csv("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv", 
+         stringsAsFactors = FALSE,
+         header=FALSE)
+
+
+# Read the educational data from this data set
+
+dataEd <- read.csv('https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv',
+                 stringsAsFactors = FALSE,
+                 header = TRUE)
+
+
+#Set the 2-alpha.code column name
+
+names(dataEd)[28] <- '2-alpha.code'
+
+
+
+# Trim the edges of the DataSet for a uniform Set
+# Also, write Column names
+
+dataGDP <- dataGDP[6:223, c(1,2,4,5)]
+names(dataGDP) <- c('CountryCode','Rank','Country','DollarsMillions')
+
+
+
+# Data Type the Columns for what they represent
+
+dataGDP$CountryCode <- as.character(dataGDP$CountryCode)
+dataGDP$Rank <- as.integer(dataGDP$Rank)
+dataGDP$DollarsMillions <- as.integer(gsub(",","", dataGDP$DollarsMillions))
+dataGDP$Country <- as.character(dataGDP$Country)
+
+
+
+# Merge the two
+
+bigData <- merge(dataGDP, dataEd, by='CountryCode')
+summary(bigData)
+
+
+
+#See how many IDs match
+
+print(paste("ID NO Match:",sum(is.na(bigData$CountryCode))))
+
+
+
+# Count the number of NA's within the DataSet
+
+print(colSums(is.na(bigData)))
+
+
+
+# In Total NA's
+
+print(paste("Total NA:", table(is.na(bigData))[2]))
+
+
+
+# Sort the data frame in ascending order by GDP rank 
+# (so United States is last)
+
+index <- with(bigData, order(Rank, decreasing = TRUE))
+heyo <- bigData[index,][c('Rank','Country')]
+print(heyo[13:13,])
+
+
+
+#Group the Income.Group column and then get the Average Rank of each
+
+print(aggregate(Rank ~ Income.Group, bigData, mean))
+
+
+# Make Another DataFrame to simplify the Data Set for just Information we need
+
+bigData2 <- na.omit(bigData[c('CountryCode','Rank',
+                                'Country','DollarsMillions',
+                                'Income.Group')])
+
+print(head(bigData2))
+
+#BarPlot the Data of all the countries and grouped by Income Group
+
+library(ggplot2)
+print(ggplot(data=bigData2,
+       aes(x=CountryCode, y=sqrt(DollarsMillions), group=Income.Group,
+           colour = Income.Group))+
+  theme(axis.text.x  = element_text(angle=-270, hjust=0.5, size=6,colour="black")) +
+  geom_bar(stat="identity"))
+
+
+# Make a new column and Cut the DataFrame. Then Cross-Classify the Income Groups to see how many 
+# countries are in the Lower middle income but among the 38 nations with highest GDP
+
+bigData2$Bins <- cut(bigData2$Rank, breaks=5)
+print(table(bigData2$Income.Group, bigData2$Bins))
+print(paste("Lower Middle Income in top 38 GDP:", table(bigData2$Income.Group, bigData2$Bins)[4]))
+
