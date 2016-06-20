@@ -18,7 +18,7 @@ dataEd <- read.csv('https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTA
                  header = TRUE)
 ```
 
-##Trim the edges of the data set for a uniform set. Also, here we give the data Columns a certain type so the computer knows how to ##handle the values
+##Trim the edges of the data set for a uniform set. Also, here we give the data Columns a certain type so the computer knows how to handle the values
 *Used function gsub() to correctly read in data type for "DollarsMillions"*
 
 
@@ -289,8 +289,7 @@ print(paste("Total NA:", table(is.na(bigData))[2]))
 
 
 
-###By sorting the Data set in decreasing order, we are able to find the 13th country from the last. Then group the data into Income Groups 
-###and get the Average Rank for each. 
+###By sorting the Data set in decreasing order, we are able to find the 13th country from the last. Then group the data into Income Groups and get the Average Rank for each. 
 
 
 
@@ -324,7 +323,7 @@ aggregate(Rank ~ Income.Group, bigData, mean)
 ```
 
 
-##Below I simplify the Data into only the variables we need to make it easier
+##Below, I simplify the Data into only the variables we need to make it easier
 
 
 ```r
@@ -335,8 +334,8 @@ bigData2 <- na.omit(bigData[c('CountryCode','Rank',
                                 'Income.Group')])
 ```
 
-##This is a BarPlot all of the countries using ggplot2 and grouping them by Income Group
-*I took the square root of GDP "DollarsMillions" to transform the data*
+##This is a BarPlot of all the countries using ggplot2 and grouping them by Income Group
+*I took the square root of GDP "DollarsMillions" to transform the data for a more informative graphic*
 
 
 ```r
