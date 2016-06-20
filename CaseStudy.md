@@ -18,7 +18,7 @@ dataEd <- read.csv('https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTA
                  header = TRUE)
 ```
 
-##Trim the edges of the DataSet for a uniform Set. Also, here we give the Data Columns a certain type so the computer knows how to handle the values
+##Trim the edges of the data set for a uniform set. Also, here we give the data Columns a certain type so the computer knows how to ##handle the values
 *Used function gsub() to correctly read in data type for "DollarsMillions"*
 
 
@@ -54,7 +54,7 @@ dataGDP$Country <- as.character(dataGDP$Country)
 ```
 
 
-### Merge the two data sets on the vector CountryCode
+### Merge the two data sets on the vector CountryCode to make one data set
 
 
 ```r
