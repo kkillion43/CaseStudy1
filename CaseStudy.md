@@ -349,7 +349,7 @@ ggplot(data=bigData2,
   theme(axis.text.x  = element_text(angle=-270, hjust=0.5, size=6,colour="black")) +
   geom_bar(stat="identity")
 ```
-*__United States showing the max__*
+*__United States showing the max GDP and __*
 *__High Income: OECD group showing on average a Higher GDP__*
 ![](CaseStudy_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
