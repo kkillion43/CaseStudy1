@@ -352,6 +352,11 @@ ggplot(data=bigData2,
 
 ![](CaseStudy_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
+*United States showing the max*
+*High Income: OECD group showing on average a Higher GDP*
+
+
+
 ###Now we create a new column that cuts the Data into Categories based on Rank into 5 slices.
 ###Then, we look to see how many countries are in the __Lower Middle Income__ but among the 38 nations with the highest GDP
 
@@ -389,3 +394,6 @@ print(paste("Lower Middle Income in top 38 GDP:", table(bigData2$Income.Group, b
 ## [1] "Lower Middle Income in top 38 GDP: 5"
 ```
 
+#Conclusion
+_____
+My main observations were that High Income: OECD Countries showed a consistent High GDP amongst the group as opposed to the nonOECD countries. Actually, there were more higher ranked GDP in 'Upper Middle Income' countries than there were in High Income: nonOECD countries.
